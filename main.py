@@ -14,7 +14,7 @@ TASK = "https://tasks.aidevs.pl/task"
 TOKEN_PARAMS = {
     "apikey": AI_DEVS_KEY
 }
-BLOG_TEXTS = []
+
 
 token_response = requests.post(url=TOKEN, json=TOKEN_PARAMS)
 token_response.raise_for_status()
@@ -28,10 +28,9 @@ task_data = get_task_response.json()
 question_data = {"question": "what is capitol city of germany?"}
 question = question_data["question"]
 question_response = requests.post(url=f"{TASK}/{token}", data=question_data)
-token_response.raise_for_status()
+question_response.raise_for_status()
 answer_data = question_response.json()
 answer = answer_data["answer"]
-print(answer)
 
 chat = ChatOpenAI(api_key=OPEN_AI_KEY)
 
